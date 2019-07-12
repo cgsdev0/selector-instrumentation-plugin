@@ -23,7 +23,7 @@ module.exports = ({ types: t }) => {
         const specifier = path.node.specifiers.find(specifier => specifier.type === "ImportSpecifier" && specifier.imported.name === "createSelector" && specifier.local.name === "createSelector");
         if(!specifier) return;
         path.node.specifiers = path.node.specifiers.filter(s => s != specifier);
-        const wrapperName = state.opts.wrapperName || "makeSelectorCreator";
+        const wrapperName = state.opts.wrapperName || "makeCreateSelector";
         const importPath = state.opts.importPath || "make-create-selector";
         const newImport = t.importDeclaration([t.importSpecifier(t.identifier(wrapperName), t.identifier(wrapperName))], t.stringLiteral(importPath));
         path.insertAfter(newImport);
