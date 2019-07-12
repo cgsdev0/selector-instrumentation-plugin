@@ -18,12 +18,8 @@ module.exports = ({ types: t }) => {
         path.replaceWith(newCall);
       },
       ImportDeclaration(path, state) {
-        console.log("step 0");
-          console.log(path.node)
         if (path.node.source.type !== "StringLiteral") return;
-        console.log("step 1");
         if (path.node.source.value !== "reselect") return;
-        console.log("step 2");
         const specifier = path.node.specifiers.find(specifier => specifier.type === "ImportSpecifier")
         if(!specifier) return;
         const wrapperName = state.opts.wrapperName || "makeSelectorCreator";
