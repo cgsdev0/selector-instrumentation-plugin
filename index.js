@@ -20,13 +20,16 @@ module.exports = ({ types: t }) => {
       ImportDeclaration(path, state) {
         if (path.node.source.type !== "StringLiteral") return;
         if (path.node.source.value !== "reselect") return;
-        const specifier = path.node.specifiers.find(specifier => specifier.type === "ImportSpecifier")
+        const specifier = path.node.specifiers.find(specifier => specifier.type === "ImportSpecifier" && specifier.imported.name === "createSelector" && specifier.local.name === "createSelector");
         if(!specifier) return;
+        path.node.specifiers = path.node.specifiers.filter(s => s != specifier);
         const wrapperName = state.opts.wrapperName || "makeSelectorCreator";
-        specifier.imported.name = wrapperName;
-          specifier.local.name = wrapperName;
         const importPath = state.opts.importPath || "make-create-selector";
-        path.node.source.value = importPath;
+        const newImport = t.importDeclaration([t.importSpecifier(t.identifier(wrapperName), t.identifier(wrapperName))], t.stringLiteral(importPath));
+        path.insertAfter(newImport);
+        if (path.node.specifiers.length === 0) {
+          path.remove();
+        }
       },
     },
   };

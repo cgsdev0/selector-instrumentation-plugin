@@ -12,17 +12,36 @@ export const selectNothing = makeCreateSelector(\\"selectNothing\\")();
 
 exports[`selectorInstrumentationPlugin 2. selectorInstrumentationPlugin: 2. selectorInstrumentationPlugin 1`] = `
 "
-import { createSelector } from \\"reselect\\";
-        export const selectState = createSelector(state, state => state.get(\\"stuff\\"));
+export const selectState = createSelector(state, state => state.get(\\"stuff\\"));
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { makeSelectorCreator } from \\"make-create-selector\\";
 export const selectState = makeCreateSelector(\\"selectState\\")(state, state => state.get(\\"stuff\\"));
 "
 `;
 
-exports[`selectorInstrumentationPlugin 3. selectorInstrumentationPlugin: 3. selectorInstrumentationPlugin 1`] = `
+exports[`selectorInstrumentationPlugin 6. selectorInstrumentationPlugin: 6. selectorInstrumentationPlugin 1`] = `
+"
+import { createSelector } from \\"reselect\\";
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { makeSelectorCreator } from \\"make-create-selector\\";
+"
+`;
+
+exports[`selectorInstrumentationPlugin 7. selectorInstrumentationPlugin: 7. selectorInstrumentationPlugin 1`] = `
+"
+import { defaultMemoize, createSelector } from \\"reselect\\";
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { defaultMemoize } from \\"reselect\\";
+import { makeSelectorCreator } from \\"make-create-selector\\";
+"
+`;
+
+exports[`selectorInstrumentationPlugin 8. selectorInstrumentationPlugin: 8. selectorInstrumentationPlugin 1`] = `
 "
 export const selectFromMultipleThings = createSelector(selectFrom1, selectFrom2, selectFrom3, (t1, t2, t3) => t1 + t2 / t3);
 
