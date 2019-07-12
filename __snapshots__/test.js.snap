@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`selectorInstrumentationPlugin 1. selectorInstrumentationPlugin: 1. selectorInstrumentationPlugin 1`] = `
+"
+export const selectNothing = createSelector();
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+export const selectNothing = makeSelectorCreator(\\"selectNothing\\")();
+"
+`;
+
+exports[`selectorInstrumentationPlugin 2. selectorInstrumentationPlugin: 2. selectorInstrumentationPlugin 1`] = `
+"
+export const selectState = createSelector(state, state => state.get(\\"stuff\\"));
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+export const selectState = makeSelectorCreator(\\"selectState\\")(state, state => state.get(\\"stuff\\"));
+"
+`;
+
+exports[`selectorInstrumentationPlugin 3. selectorInstrumentationPlugin: 3. selectorInstrumentationPlugin 1`] = `
+"
+export const selectFromMultipleThings = createSelector(selectFrom1, selectFrom2, selectFrom3, (t1, t2, t3) => t1 + t2 / t3);
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+export const selectFromMultipleThings = makeSelectorCreator(\\"selectFromMultipleThings\\")(selectFrom1, selectFrom2, selectFrom3, (t1, t2, t3) => t1 + t2 / t3);
+"
+`;
