@@ -6,17 +6,19 @@ export const selectNothing = createSelector();
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-export const selectNothing = makeSelectorCreator(\\"selectNothing\\")();
+export const selectNothing = makeCreateSelector(\\"selectNothing\\")();
 "
 `;
 
 exports[`selectorInstrumentationPlugin 2. selectorInstrumentationPlugin: 2. selectorInstrumentationPlugin 1`] = `
 "
-export const selectState = createSelector(state, state => state.get(\\"stuff\\"));
+import { createSelector } from \\"reselect\\";
+        export const selectState = createSelector(state, state => state.get(\\"stuff\\"));
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-export const selectState = makeSelectorCreator(\\"selectState\\")(state, state => state.get(\\"stuff\\"));
+import { makeSelectorCreator } from \\"make-create-selector\\";
+export const selectState = makeCreateSelector(\\"selectState\\")(state, state => state.get(\\"stuff\\"));
 "
 `;
 
@@ -26,6 +28,6 @@ export const selectFromMultipleThings = createSelector(selectFrom1, selectFrom2,
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-export const selectFromMultipleThings = makeSelectorCreator(\\"selectFromMultipleThings\\")(selectFrom1, selectFrom2, selectFrom3, (t1, t2, t3) => t1 + t2 / t3);
+export const selectFromMultipleThings = makeCreateSelector(\\"selectFromMultipleThings\\")(selectFrom1, selectFrom2, selectFrom3, (t1, t2, t3) => t1 + t2 / t3);
 "
 `;

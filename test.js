@@ -11,7 +11,8 @@ pluginTester({
       snapshot: true,
     },
     {
-      code: `export const selectState = createSelector(state, state => state.get("stuff"));`,
+        code: `import { createSelector } from "reselect";
+        export const selectState = createSelector(state, state => state.get("stuff"));`,
       snapshot: true,
     },
     {
